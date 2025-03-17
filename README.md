@@ -7,8 +7,6 @@ This is the UI part of the exercise
 
 <img width="975" alt="Screenshot 2025-03-17 at 3 56 01 PM" src="https://github.com/user-attachments/assets/98c12ba8-4252-44d3-b3a0-b51b275552cc" />
 
-<img width="737" alt="Screenshot 2025-03-17 at 3 56 11 PM" src="https://github.com/user-attachments/assets/90016e5b-37db-43fc-90d2-c412ea4a76f9" />
-
 
 
 # Team Member Management UI
