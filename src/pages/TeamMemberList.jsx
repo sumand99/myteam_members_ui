@@ -8,32 +8,40 @@ function TeamMemberList() {
 
   useEffect(() => {
     axios.get('/api/team_members/')
-      .then(res => setMembers(res.data))
-      .catch(err => console.error(err));
+      .then((res) => setMembers(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Team members</h1>
-      <p>You have {members.length} team member{members.length !== 1 ? 's' : ''}.</p>
-      <hr />
-      <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-        {members.map(member => (
+    <div className="container">
+      <div className="header">
+        <div>
+          <h1 className="title">Team members</h1>
+          <p className="subtitle">
+            You have {members.length} team member{members.length !== 1 ? 's' : ''}.
+          </p>
+        </div>
+        <button className="add-button" onClick={() => navigate('/add')}>
+          +
+        </button>
+      </div>
+
+      <ul className="member-list">
+        {members.map((member) => (
           <li
             key={member.id}
+            className="member-card"
             onClick={() => navigate(`/edit/${member.id}`)}
-            style={{ margin: '10px 0', borderBottom: '1px solid #ccc', cursor: 'pointer' }}
           >
-            <strong>
+            <div className="member-name">
               {member.name}
-              {member.role === 'admin' ? ' (admin)' : ''}
-            </strong><br />
-            <span>{member.phone}</span><br />
-            <span>{member.email}</span>
+              {member.role === 'admin' && ' (admin)'}
+            </div>
+            <div className="member-info">{member.phone}</div>
+            <div className="member-info">{member.email}</div>
           </li>
         ))}
       </ul>
-      <button onClick={() => navigate('/add')} style={{ marginTop: 10 }}>+</button>
     </div>
   );
 }

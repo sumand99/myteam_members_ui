@@ -5,7 +5,7 @@ import axios from 'axios';
 function TeamMemberForm() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const isEditing = !!id;
+  const isEditing = Boolean(id);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -17,17 +17,17 @@ function TeamMemberForm() {
   useEffect(() => {
     if (isEditing) {
       axios.get(`/api/team_members/${id}/`)
-        .then(res => setFormData(res.data))
-        .catch(err => console.error(err));
+        .then((res) => setFormData(res.data))
+        .catch((err) => console.error(err));
     }
   }, [id, isEditing]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const request = isEditing
       ? axios.put(`/api/team_members/${id}/`, formData)
@@ -35,55 +35,63 @@ function TeamMemberForm() {
 
     request
       .then(() => navigate('/'))
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const handleDelete = () => {
-    if (!window.confirm('Delete this member?')) return;
-    axios.delete(`/api/team_members/${id}/`)
-      .then(() => navigate('/'))
-      .catch(err => console.error(err));
+    if (window.confirm('Delete this member?')) {
+      axios.delete(`/api/team_members/${id}/`)
+        .then(() => navigate('/'))
+        .catch((err) => console.error(err));
+    }
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>{isEditing ? 'Edit team member' : 'Add a team member'}</h1>
-      <p>{isEditing
-        ? 'Edit contact info, location and role.'
-        : 'Set email, location and role.'}
+    <div className="container">
+      <h1 className="form-title">
+        {isEditing ? 'Edit team member' : 'Add a team member'}
+      </h1>
+      <p className="form-subtitle">
+        {isEditing
+          ? 'Edit contact info, location and role.'
+          : 'Set email, location and role.'}
       </p>
-      <form onSubmit={handleSubmit} style={{ maxWidth: 300 }}>
 
-      <label>Name</label>
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          style={{ width: '100%', marginBottom: 10 }}
-        />
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Email</label>
-        <input
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          style={{ width: '100%', marginBottom: 10 }}
-          required
-        />
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Phone</label>
-        <input
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          style={{ width: '100%', marginBottom: 10 }}
-        />
+        <div className="form-group">
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+        </div>
 
-        <p>Role</p>
-        <div>
-          <label>
+        <div className="role-group">
+          <label className="radio-option">
             <input
               type="radio"
               name="role"
@@ -91,11 +99,9 @@ function TeamMemberForm() {
               checked={formData.role === 'regular'}
               onChange={handleChange}
             />
-            &nbsp; Regular – Can’t delete members
+            {' '}Regular – Can’t delete members
           </label>
-        </div>
-        <div>
-          <label>
+          <label className="radio-option">
             <input
               type="radio"
               name="role"
@@ -103,21 +109,21 @@ function TeamMemberForm() {
               checked={formData.role === 'admin'}
               onChange={handleChange}
             />
-            &nbsp; Admin – Can delete members
+            {' '}Admin – Can delete members
           </label>
         </div>
 
-        <div style={{ marginTop: 10 }}>
+        <div className="button-row">
           {isEditing && (
             <button
               type="button"
+              className="delete-button"
               onClick={handleDelete}
-              style={{ marginRight: 10, background: 'red', color: '#fff' }}
             >
               Delete
             </button>
           )}
-          <button type="submit">
+          <button type="submit" className="save-button">
             Save
           </button>
         </div>
