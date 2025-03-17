@@ -55,3 +55,14 @@ This front end is built with **React**, communicating with a Django REST API at 
    ```bash
    git clone https://github.com/<your-username>/myteam_members_ui.git
    cd myteam_members_ui
+
+2. npm install
+
+3. If your Django app runs at http://127.0.0.1:8000 and you want to call the API with relative paths (e.g. "/api/team_members/"), set the proxy in package.json: {
+  "proxy": "http://127.0.0.1:8000"
+}
+Then restart your dev server after saving.
+
+
+4. 
+
