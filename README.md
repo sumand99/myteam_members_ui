@@ -63,6 +63,3 @@ This front end is built with **React**, communicating with a Django REST API at 
 }
 Then restart your dev server after saving.
 
-
-4. 
-
