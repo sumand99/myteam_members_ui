@@ -65,10 +65,57 @@ This front end is built with **React**, communicating with a Django REST API at 
    git clone https://github.com/<your-username>/myteam_members_ui.git
    cd myteam_members_ui
 
-2. npm install
+2. **Install dependencies**:
+    npm install
+    or
+    yarn
 
-3. If your Django app runs at http://127.0.0.1:8000 and you want to call the API with relative paths (e.g. "/api/team_members/"), set the proxy in package.json: {
-  "proxy": "http://127.0.0.1:8000"
-}
-Then restart your dev server after saving.
+4. **(Optional) Configure a proxy**:
+   If Django app runs at http://127.0.0.1:8000 and we want to call the API with relative paths (e.g. "/api/team_members/"), set the proxy in
+   package.json:
+   {
+       "proxy": "http://127.0.0.1:8000"
+   }
+   
+  Then you can restart your dev server after saving.
+
+## Usage
+1. **Start the Django server (in your Django project)**:
+   python manage.py runserver
+
+2. **Run the React development server**:
+npm start
+(By default, this starts at http://localhost:3000)
+
+4. **Open your browser at http://localhost:3000**.
+
+The List Page appears, showing existing team members.
+Click + to add a new member.
+Click any member to edit or delete them
+
+
+##Project Structure
+<img width="607" alt="Screenshot 2025-03-23 at 1 39 14 AM" src="https://github.com/user-attachments/assets/3d250891-b959-4c68-99d5-09c11839e527" />
+
+**TeamMemberList.jsx**: 
+Fetches and displays the list of team members, shows the count, and handles navigation to “add” or “edit.”
+
+**TeamMemberForm.jsx**: 
+Handles creation (POST) or updating (PUT) of a member, as well as deletion (DELETE).
+
+
+## API Endpoints
+
+Assuming the Django REST API is running at http://127.0.0.1:8000/api/myteam_members/:
+
+GET /api/team_members/ → list all team members
+POST /api/team_members/ → create a new member
+GET /api/team_members/<id>/ → retrieve member with <id>
+PUT / PATCH /api/team_members/<id>/ → update member
+DELETE /api/team_members/<id>/ → delete member
+Ensure your Django side matches this path structure, or update the UI’s axios calls accordingly.
+
+
+
+
 
