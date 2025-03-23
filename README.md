@@ -110,11 +110,15 @@ Handles creation (POST) or updating (PUT) of a member, as well as deletion (DELE
 
 Assuming the Django REST API is running at http://127.0.0.1:8000/api/myteam_members/:
 
-GET /api/team_members/ → list all team members
-POST /api/team_members/ → create a new member
-GET /api/team_members/<id>/ → retrieve member with <id>
-PUT / PATCH /api/team_members/<id>/ → update member
-DELETE /api/team_members/<id>/ → delete member
+| Method     | Endpoint                  | Description                    |
+|------------|---------------------------|--------------------------------|
+| **GET**    | `/api/team_members/`     | List all team members          |
+| **POST**   | `/api/team_members/`     | Create a new member            |
+| **GET**    | `/api/team_members/<id>/`| Retrieve member with `<id>`    |
+| **PUT / PATCH** | `/api/team_members/<id>/` | Update an existing member |
+| **DELETE** | `/api/team_members/<id>/`| Delete a member                |
+
+
 Ensure your Django side matches this path structure, or update the UI’s axios calls accordingly.
 
 
