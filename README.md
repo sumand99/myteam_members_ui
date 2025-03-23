@@ -94,7 +94,9 @@ Click + to add a new member.
 Click any member to edit or delete them
 
 
-##Project Structure
+## Project Structure
+Simple Project Structure view -
+
 <img width="607" alt="Screenshot 2025-03-23 at 1 39 14 AM" src="https://github.com/user-attachments/assets/3d250891-b959-4c68-99d5-09c11839e527" />
 
 **TeamMemberList.jsx**: 
